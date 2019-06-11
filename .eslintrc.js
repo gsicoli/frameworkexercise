@@ -23,6 +23,7 @@ module.exports = {
       'max-len': ['error', {
         code: 160,
       }],
+      'no-console': 0,
       'no-plusplus': ['off'],
       'prefer-template': 0,
       'global-require': 0,
