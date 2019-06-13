@@ -33,7 +33,9 @@
   "homepage": "https://github.com/gsicoli/frameworkexercize#readme",
   "dependencies": {
     "cors": "^2.8.5",
+    "custom-env": "^1.0.2",
     "express": "4.17.1",
+    "mongoose": "^5.5.15",
     "request": "^2.88.0",
     "request-promise": "^4.2.4"
   }
