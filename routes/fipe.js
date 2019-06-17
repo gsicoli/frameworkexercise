@@ -17,43 +17,27 @@ const makeRequest = (path) => {
 };
 
 const fetchMarcas = async (req, res, next) => {
-  try {
-    const { tipo } = req.query;
-    marcasDisponiveis = await makeRequest(`${tipo}/marcas.json`);
-    next();
-  } catch (err) {
-    res.sendStatus(500);
-  }
+  const { tipo } = req.query;
+  marcasDisponiveis = await makeRequest(`${tipo}/marcas.json`);
+  next();
 };
 
 const fetchVeiculos = async (req, res, next) => {
-  try {
-    const { tipo, id } = req.query;
-    veiculosDisponiveis = await makeRequest(`${tipo}/veiculos/${id}.json`);
-    next();
-  } catch (err) {
-    res.sendStatus(500);
-  }
+  const { tipo, id } = req.query;
+  veiculosDisponiveis = await makeRequest(`${tipo}/veiculos/${id}.json`);
+  next();
 };
 
 const fetchModelos = async (req, res, next) => {
-  try {
-    const { tipo, id, idModelo } = req.query;
-    modelosDisponiveis = await makeRequest(`${tipo}/veiculo/${id}/${idModelo}.json`);
-    next();
-  } catch (err) {
-    res.sendStatus(500);
-  }
+  const { tipo, id, idModelo } = req.query;
+  modelosDisponiveis = await makeRequest(`${tipo}/veiculo/${id}/${idModelo}.json`);
+  next();
 };
 
 const fetchVeiculo = async (req, res, next) => {
-  try {
-    const { tipo, id, idModelo, idAno } = req.query;
-    veiculo = await makeRequest(`${tipo}/veiculo/${id}/${idModelo}/${idAno}.json`);
-    next();
-  } catch (err) {
-    res.sendStatus(500);
-  }
+  const { tipo, id, idModelo, idAno } = req.query;
+  veiculo = await makeRequest(`${tipo}/veiculo/${id}/${idModelo}/${idAno}.json`);
+  next();
 };
 
 router.get('/tipos', (req, res) => res.send(tipos));
