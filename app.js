@@ -35,8 +35,7 @@ const startServer = async () => {
     if (res.headersSent) {
       next(err);
     }
-    console.log('eiii!')
-;    res.sendStatus(500);
+    res.sendStatus(500);
   });
 
   app.listen(process.env.SERVER_PORT, () => {
