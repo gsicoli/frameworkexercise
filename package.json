@@ -4,6 +4,8 @@
   "description": "Exercize JS Frameworks, view READ.md for details.",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
+    "build": "next build",
     "lint": "eslint -c .eslintrc.js --ext .js ./",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -32,11 +34,16 @@
   },
   "homepage": "https://github.com/gsicoli/frameworkexercize#readme",
   "dependencies": {
+    "@zeit/next-css": "1.0.1",
+    "@zeit/next-sass": "1.0.1",
     "body-parser": "1.19.0",
     "cors": "2.8.5",
     "custom-env": "1.0.2",
     "express": "4.17.1",
     "mongoose": "5.5.15",
+    "next": "8.1.0",
+    "react": "16.8.6",
+    "react-dom": "16.8.6",
     "request": "2.88.0",
     "request-promise": "4.2.4"
   }
