@@ -25,7 +25,8 @@
     "eslint-config-airbnb-base": "13.1.0",
     "eslint-plugin-async-await": "0.0.0",
     "eslint-plugin-import": "2.17.3",
-    "eslint-plugin-promise": "4.1.1"
+    "eslint-plugin-promise": "4.1.1",
+    "react-redux": "7.1.0"
   },
   "author": "gsicoli",
   "license": "ISC",
@@ -44,6 +45,7 @@
     "next": "8.1.0",
     "react": "16.8.6",
     "react-dom": "16.8.6",
+    "redux": "4.0.1",
     "request": "2.88.0",
     "request-promise": "4.2.4"
   }
