@@ -1,0 +1,4 @@
+export const CATEGORIES_REQUESTED = 'CATEGORIES_REQUESTED';
+export const CATEGORIES_LOADED = 'CATEGORIES_LOADED';
+export const API_ERROR = 'API_ERROR';
+export default '';
