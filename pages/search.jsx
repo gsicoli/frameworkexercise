@@ -1,7 +1,8 @@
 import Layout from '../src/components/Layout';
+import FipeForm from '../src/components/FipeForm'
 
 export default () => (
   <Layout>
-    Aqui ficarão os dropbox para consultar a tabela.
+    <FipeForm />
   </Layout>
 );
