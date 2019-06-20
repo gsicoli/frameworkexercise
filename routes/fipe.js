@@ -2,25 +2,28 @@ const rp = require('request-promise');
 const router = require('express').Router();
 
 const categories = ['carros', 'motos', 'caminhoes'];
-let availableBrands = [];
-let availableVehicles = [];
-let availableModels = [];
-let vehicle = {};
 
-const makeRequest = (path) => {
+// These is only used to exercize the idea of 'next' to handle routes
+const results = {
+  availableBrands: [],
+  availableVehicles: [],
+  availableModels: [],
+  vehicle: {},
+};
+
+const makeRequest = async (path, resultName, next) => {
+  let err;
   const options = {
     uri: 'https://fipeapi.appspot.com/api/1/' + path,
     method: 'GET',
     json: true,
   };
-  return rp(options);
-};
 
-const fetchBrands = async (req, res, next) => {
-  let err;
+  // try..catch blocks are necessary inside async functions.
+  // uncomment line below to see an error not being caught by default error handling route
+  // throw 'anything';
   try {
-    const { category } = req.query;
-    availableBrands = await makeRequest(`${category}/marcas.json`);
+    results[resultName] = await rp(options);
   } catch (e) {
     err = e;
   } finally {
@@ -28,46 +31,30 @@ const fetchBrands = async (req, res, next) => {
   }
 };
 
-const fetchVehicles = async (req, res, next) => {
-  let err;
-  try {
-    const { category, id } = req.query;
-    availableVehicles = await makeRequest(`${category}/veiculos/${id}.json`);
-  } catch (e) {
-    err = e;
-  } finally {
-    next(err);
-  }
+const fetchBrands = (req, res, next) => {
+  const { category } = req.query;
+  makeRequest(`${category}/marcas.json`, 'availableBrands', next);
 };
 
-const fetchModels = async (req, res, next) => {
-  let err;
-  try {
-    const { category, id, idModel } = req.query;
-    availableModels = await makeRequest(`${category}/veiculo/${id}/${idModel}.json`);
-  } catch (e) {
-    err = e;
-  } finally {
-    next(err);
-  }
+const fetchVehicles = (req, res, next) => {
+  const { category, id } = req.query;
+  makeRequest(`${category}/veiculos/${id}.json`, 'availableVehicles', next);
 };
 
-const fetchVehicle = async (req, res, next) => {
-  let err;
-  try {
-    const { category, id, idModel, idYear } = req.query;
-    vehicle = await makeRequest(`${category}/veiculo/${id}/${idModel}/${idYear}.json`);
-  } catch (e) {
-    err = e;
-  } finally {
-    next(err);
-  }
+const fetchModels = (req, res, next) => {
+  const { category, id, idModel } = req.query;
+  makeRequest(`${category}/veiculo/${id}/${idModel}.json`, 'availableModels', next);
+};
+
+const fetchVehicle = (req, res, next) => {
+  const { category, id, idModel, idYear } = req.query;
+  makeRequest(`${category}/veiculo/${id}/${idModel}/${idYear}.json`, 'vehicle', next);
 };
 
 router.get('/categories', (req, res) => res.send(categories));
-router.get('/brands', fetchBrands, (req, res) => res.send(availableBrands));
-router.get('/vehicles', fetchVehicles, (req, res) => res.send(availableVehicles));
-router.get('/models', fetchModels, (req, res) => res.send(availableModels));
-router.get('/vehicle', fetchVehicle, (req, res) => res.send(vehicle));
+router.get('/brands', fetchBrands, (req, res) => res.send(results.availableBrands));
+router.get('/vehicles', fetchVehicles, (req, res) => res.send(results.availableVehicles));
+router.get('/models', fetchModels, (req, res) => res.send(results.availableModels));
+router.get('/vehicle', fetchVehicle, (req, res) => res.send(results.vehicle));
 
 module.exports = router;
