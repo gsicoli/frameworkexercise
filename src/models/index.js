@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
-const Veiculo = require('./veiculo');
+const Vehicle = require('./vehicle');
 
 const connectDb = () => mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true });
 
-const models = { Veiculo };
+const models = { Vehicle };
 
 module.exports = { connectDb, models };

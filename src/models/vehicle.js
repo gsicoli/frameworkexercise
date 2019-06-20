@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const veiculoSchema = new mongoose.Schema({
+const vehicleSchema = new mongoose.Schema({
   referencia: String,
   fipe_codigo: String,
   name: String,
@@ -14,6 +14,6 @@ const veiculoSchema = new mongoose.Schema({
   id: String,
 });
 
-const Veiculo = mongoose.model('Veiculo', veiculoSchema);
+const Vehicle = mongoose.model('Vehicle', vehicleSchema);
 
-module.exports = Veiculo;
+module.exports = Vehicle;
