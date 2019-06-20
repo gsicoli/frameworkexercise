@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Header from './Header';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.css';
 
 const Layout = props => (
