@@ -3,22 +3,25 @@ import {
   CATEGORIES_LOADED,
   BRANDS_REQUESTED,
   BRANDS_LOADED,
-  VEHICLES_REQUESTED,
-  VEHICLES_LOADED,
   MODELS_REQUESTED,
+  MODELS_LOADED,
+  YEARS_REQUESTED,
+  YEARS_LOADED,
+  VEHICLE_REQUESTED,
 } from '../constants/action-types';
 
 const initialState = {
   selectedCategory: '',
-  selectedBrand: '',
+  selectedBrand: SELECTOR_PLACEHOLDER,
+  selectedModel: SELECTOR_PLACEHOLDER,
+  selectedYear: SELECTOR_PLACEHOLDER,
   categories: [],
   availableBrands: [],
-  availableVehicles: [],
   availableModels: [],
+  availableYears: [],
   brandsDisabled: true,
-  vehiclesDisabled: true,
-  selectValueBrand: SELECTOR_PLACEHOLDER,
-  selectValueVehicles: SELECTOR_PLACEHOLDER,
+  modelsDisabled: true,
+  yearsDisabled: true,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -37,30 +40,51 @@ const rootReducer = (state = initialState, action) => {
   if (action.type === BRANDS_LOADED) {
     return Object.assign({}, state, {
       availableBrands: action.payload,
-      selectValueBrand: SELECTOR_PLACEHOLDER,
-      selectValueVehicles: SELECTOR_PLACEHOLDER,
+      selectedBrand: SELECTOR_PLACEHOLDER,
+      selectedModel: SELECTOR_PLACEHOLDER,
+      selectedYear: SELECTOR_PLACEHOLDER,
       brandsDisabled: false,
-      vehiclesDisabled: true,
-    });
-  }
-
-  if (action.type === VEHICLES_REQUESTED) {
-    return Object.assign({}, state, {
-      selectValueBrand: action.payload.id,
-    });
-  }
-
-  if (action.type === VEHICLES_LOADED) {
-    return Object.assign({}, state, {
-      availableVehicles: action.payload,
-      selectValueVehicles: SELECTOR_PLACEHOLDER,
-      vehiclesDisabled: false,
+      modelsDisabled: true,
+      yearsDisabled: true,
     });
   }
 
   if (action.type === MODELS_REQUESTED) {
+    const { id } = action.payload.params;
     return Object.assign({}, state, {
-      selectValueVehicles: action.payload.idModel,
+      selectedBrand: id,
+    });
+  }
+
+  if (action.type === MODELS_LOADED) {
+    return Object.assign({}, state, {
+      availableModels: action.payload,
+      selectedModel: SELECTOR_PLACEHOLDER,
+      selectedYear: SELECTOR_PLACEHOLDER,
+      modelsDisabled: false,
+      yearsDisabled: true,
+    });
+  }
+
+  if (action.type === YEARS_REQUESTED) {
+    const { idModel } = action.payload.params;
+    return Object.assign({}, state, {
+      selectedModel: idModel,
+    });
+  }
+
+  if (action.type === YEARS_LOADED) {
+    return Object.assign({}, state, {
+      availableYears: action.payload,
+      selectedYear: SELECTOR_PLACEHOLDER,
+      yearsDisabled: false,
+    });
+  }
+
+  if (action.type === VEHICLE_REQUESTED) {
+    const { idYear } = action.payload.params;
+    return Object.assign({}, state, {
+      selectedYear: idYear,
     });
   }
 

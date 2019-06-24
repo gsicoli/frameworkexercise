@@ -1,8 +1,9 @@
 import {
   CATEGORIES_REQUESTED,
   BRANDS_REQUESTED,
-  VEHICLES_REQUESTED,
   MODELS_REQUESTED,
+  YEARS_REQUESTED,
+  VEHICLE_REQUESTED,
 } from '../constants/action-types';
 
 export function getCategories() {
@@ -14,11 +15,15 @@ export function categoryChosen(category) {
 }
 
 export function brandChosen(params) {
-  return { type: VEHICLES_REQUESTED, payload: { params } };
+  return { type: MODELS_REQUESTED, payload: { params } };
 }
 
-export function vehicleChosen(params) {
-  return { type: MODELS_REQUESTED, payload: { params } };
+export function modelChosen(params) {
+  return { type: YEARS_REQUESTED, payload: { params } };
+}
+
+export function yearChosen(params) {
+  return { type: VEHICLE_REQUESTED, payload: { params } };
 }
 
 export default '';

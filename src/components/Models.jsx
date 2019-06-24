@@ -1,9 +1,9 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { vehicleChosen } from '../actions';
+import { modelChosen } from '../actions';
 import { SELECTOR_PLACEHOLDER } from '../constants';
 
-export class Vehicles extends Component {
+export class Models extends Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
@@ -11,18 +11,20 @@ export class Vehicles extends Component {
 
   handleChange(event) {
     const params = {
+      category: this.props.selectedCategory,
+      id: this.props.selectedBrand,
       idModel: event.target.value,
     }
-    this.props.vehicleChosen(params);
+    this.props.modelChosen(params);
   }
 
   render() {
     return (
       <div className="form-group col-md-2">
-        <label htmlFor="inputVehicle">Veículo</label>
-        <select value={this.props.selectVal} id="inputVehicle" className='form-control' onChange={this.handleChange} disabled={this.props.isDisabled}>
+        <label htmlFor="inputModel">Modelo</label>
+        <select value={this.props.selectVal} id="inputModel" className='form-control' onChange={this.handleChange} disabled={this.props.isDisabled}>
           <option disabled value={SELECTOR_PLACEHOLDER}>{SELECTOR_PLACEHOLDER}</option>
-            {this.props.vehicles.map(el => (
+            {this.props.models.map(el => (
               <option value={el.id}>{el.name}</option>
             ))}
         </select>
@@ -32,16 +34,18 @@ export class Vehicles extends Component {
 }
 
 const mapStateToProps = state => ({
-  vehicles: state.availableVehicles,
-  isDisabled: state.vehiclesDisabled,
-  selectVal: state.selectValueVehicles,
+  models: state.availableModels,
+  isDisabled: state.modelsDisabled,
+  selectVal: state.selectedModel,
+  selectedCategory: state.selectedCategory,
+  selectedBrand: state.selectedBrand,
 });
 
 const mapDispatchToProps = dispatch => ({
-  vehicleChosen: vehicle => dispatch(vehicleChosen(vehicle)),
+  modelChosen: model => dispatch(modelChosen(model)),
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Vehicles);
+)(Models);

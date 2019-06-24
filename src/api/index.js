@@ -12,8 +12,18 @@ export async function fetchBrands(category) {
   return response.data;
 }
 
-export async function fetchVehicles(params) {
+export async function fetchModels(params) {
   const response = await axios.get('/fipe/vehicles', { params });
+  return response.data;
+}
+
+export async function fetchYears(params) {
+  const response = await axios.get('/fipe/models', { params });
+  return response.data;
+}
+
+export async function fetchVehicle(params) {
+  const response = await axios.get('/fipe/vehicle', { params });
   return response.data;
 }
 

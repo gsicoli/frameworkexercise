@@ -1,7 +1,8 @@
 import { Component } from 'react';
 import VehiclesCategory from './VehiclesCategory';
 import Brands from './Brands';
-import Vehicles from './Vehicles';
+import Models from './Models';
+import VehicleYear from './VehicleYear';
 
 export class FipeForm extends Component {
   render() {
@@ -10,7 +11,8 @@ export class FipeForm extends Component {
         <div className="form-row">
           <VehiclesCategory />
           <Brands />
-          <Vehicles />
+          <Models />
+          <VehicleYear />
         </div>
       </form>
     );
