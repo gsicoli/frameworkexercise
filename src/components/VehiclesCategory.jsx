@@ -10,9 +10,7 @@ export class VehiclesCategory extends Component {
   }
 
   handleChange(event) {
-    if (event.target.value !== SELECTOR_PLACEHOLDER) {
-      this.props.categoryChosen(event.target.value);
-    }
+    this.props.categoryChosen(event.target.value);
   }
 
   componentDidMount() {
@@ -24,7 +22,7 @@ export class VehiclesCategory extends Component {
       <div className="form-group col-md-2">
         <label htmlFor="inputCategory">Categoria</label>
         <select id="inputCategory" className="form-control" onChange={this.handleChange}>
-          <option selected>{SELECTOR_PLACEHOLDER}</option>
+          <option selected disabled>{SELECTOR_PLACEHOLDER}</option>
             {this.props.categories.map(el => (
               <option value={el}>{el}</option>
             ))}

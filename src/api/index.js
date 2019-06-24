@@ -12,4 +12,9 @@ export async function fetchBrands(category) {
   return response.data;
 }
 
+export async function fetchVehicles(params) {
+  const response = await axios.get('/fipe/vehicles', { params });
+  return response.data;
+}
+
 export default '';

@@ -1,9 +1,9 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { brandChosen } from '../actions';
+import { vehicleChosen } from '../actions';
 import { SELECTOR_PLACEHOLDER } from '../constants';
 
-export class Brands extends Component {
+export class Vehicles extends Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
@@ -11,19 +11,18 @@ export class Brands extends Component {
 
   handleChange(event) {
     const params = {
-      category: this.props.selectedCategory,
-      id: event.target.value,
+      idModel: event.target.value,
     }
-    this.props.brandChosen(params);
+    this.props.vehicleChosen(params);
   }
 
   render() {
     return (
       <div className="form-group col-md-2">
-        <label htmlFor="inputBrand">Marca</label>
-        <select value={this.props.selectVal} id="inputBrand" className='form-control' onChange={this.handleChange} disabled={this.props.isDisabled}>
+        <label htmlFor="inputVehicle">Veículo</label>
+        <select value={this.props.selectVal} id="inputVehicle" className='form-control' onChange={this.handleChange} disabled={this.props.isDisabled}>
           <option disabled value={SELECTOR_PLACEHOLDER}>{SELECTOR_PLACEHOLDER}</option>
-            {this.props.brands.map(el => (
+            {this.props.vehicles.map(el => (
               <option value={el.id}>{el.name}</option>
             ))}
         </select>
@@ -33,17 +32,16 @@ export class Brands extends Component {
 }
 
 const mapStateToProps = state => ({
-  brands: state.availableBrands,
-  isDisabled: state.brandsDisabled,
-  selectVal: state.selectValueBrand,
-  selectedCategory: state.selectedCategory,
+  vehicles: state.availableVehicles,
+  isDisabled: state.vehiclesDisabled,
+  selectVal: state.selectValueVehicles,
 });
 
 const mapDispatchToProps = dispatch => ({
-  brandChosen: brand => dispatch(brandChosen(brand)),
+  vehicleChosen: vehicle => dispatch(vehicleChosen(vehicle)),
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Brands);
+)(Vehicles);
