@@ -1,16 +1,10 @@
-import { takeEvery, call, put } from 'redux-saga/effects';
-import { CATEGORIES_REQUESTED, CATEGORIES_LOADED, API_ERROR } from '../constants/action-types';
-import Api from '../api';
+import { all } from 'redux-saga/effects';
+import categoriesWatcherSaga from './categories';
+import brandsWatcherSaga from './brands';
 
-function* fetchCategoriesSaga() {
-  try {
-    const payload = yield call(Api.fetchCategories);
-    yield put({ type: CATEGORIES_LOADED, payload });
-  } catch (err) {
-    yield put({ type: API_ERROR, payload: err });
-  }
-}
-
-export default function* watcherSaga() {
-  yield takeEvery(CATEGORIES_REQUESTED, fetchCategoriesSaga);
+export default function* rootSaga() {
+  yield all([
+    categoriesWatcherSaga(),
+    brandsWatcherSaga(),
+  ]);
 }

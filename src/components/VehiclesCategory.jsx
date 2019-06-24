@@ -1,19 +1,30 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { getCategories } from '../actions';
+import { getCategories, categoryChosen } from '../actions';
+import { SELECTOR_PLACEHOLDER } from '../constants';
 
 export class VehiclesCategory extends Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) {
+    if (event.target.value !== SELECTOR_PLACEHOLDER) {
+      this.props.categoryChosen(event.target.value);
+    }
+  }
+
   componentDidMount() {
     this.props.getCategories();
   }
 
-  // eslint-disable-next-line class-methods-use-this
   render() {
     return (
       <div className="form-group col-md-2">
-        <label htmlFor="inputCategory">Category</label>
-        <select id="inputCategory" className="form-control">
-          <option selected>Choose...</option>
+        <label htmlFor="inputCategory">Categoria</label>
+        <select id="inputCategory" className="form-control" onChange={this.handleChange}>
+          <option selected>{SELECTOR_PLACEHOLDER}</option>
             {this.props.categories.map(el => (
               <option value={el}>{el}</option>
             ))}
@@ -27,7 +38,12 @@ const mapStateToProps = state => ({
   categories: state.categories,
 });
 
+const mapDispatchToProps = dispatch => ({
+  getCategories: () => dispatch(getCategories()),
+  categoryChosen: category => dispatch(categoryChosen(category)),
+});
+
 export default connect(
   mapStateToProps,
-  { getCategories },
+  mapDispatchToProps,
 )(VehiclesCategory);
