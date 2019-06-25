@@ -3,6 +3,7 @@ import {
   BRANDS_REQUESTED,
   MODELS_REQUESTED,
   YEARS_REQUESTED,
+  YEARS_CHOSEN,
   VEHICLE_REQUESTED,
 } from '../constants/action-types';
 
@@ -23,6 +24,10 @@ export function modelChosen(params) {
 }
 
 export function yearChosen(params) {
+  return { type: YEARS_CHOSEN, payload: { params } };
+}
+
+export function getVehicle(params) {
   return { type: VEHICLE_REQUESTED, payload: { params } };
 }
 

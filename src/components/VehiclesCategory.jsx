@@ -19,7 +19,7 @@ export class VehiclesCategory extends Component {
 
   render() {
     return (
-      <div className="form-group col-md-2">
+      <div className="form-group offset-md-2 col-md-2">
         <label htmlFor="inputCategory">Categoria</label>
         <select id="inputCategory" className="form-control" onChange={this.handleChange}>
           <option selected disabled>{SELECTOR_PLACEHOLDER}</option>

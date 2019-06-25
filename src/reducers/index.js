@@ -7,7 +7,8 @@ import {
   MODELS_LOADED,
   YEARS_REQUESTED,
   YEARS_LOADED,
-  VEHICLE_REQUESTED,
+  YEARS_CHOSEN,
+  VEHICLE_LOADED,
 } from '../constants/action-types';
 
 const initialState = {
@@ -22,6 +23,8 @@ const initialState = {
   brandsDisabled: true,
   modelsDisabled: true,
   yearsDisabled: true,
+  buscarDisabled: true,
+  vehicle: {},
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -46,6 +49,7 @@ const rootReducer = (state = initialState, action) => {
       brandsDisabled: false,
       modelsDisabled: true,
       yearsDisabled: true,
+      buscarDisabled: true,
     });
   }
 
@@ -63,6 +67,7 @@ const rootReducer = (state = initialState, action) => {
       selectedYear: SELECTOR_PLACEHOLDER,
       modelsDisabled: false,
       yearsDisabled: true,
+      buscarDisabled: true,
     });
   }
 
@@ -78,13 +83,21 @@ const rootReducer = (state = initialState, action) => {
       availableYears: action.payload,
       selectedYear: SELECTOR_PLACEHOLDER,
       yearsDisabled: false,
+      buscarDisabled: true,
     });
   }
 
-  if (action.type === VEHICLE_REQUESTED) {
+  if (action.type === YEARS_CHOSEN) {
     const { idYear } = action.payload.params;
     return Object.assign({}, state, {
       selectedYear: idYear,
+      buscarDisabled: false,
+    });
+  }
+
+  if (action.type === VEHICLE_LOADED) {
+    return Object.assign({}, state, {
+      vehicle: action.payload,
     });
   }
 
