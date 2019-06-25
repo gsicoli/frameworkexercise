@@ -5,6 +5,7 @@ import {
   YEARS_REQUESTED,
   YEARS_CHOSEN,
   VEHICLE_REQUESTED,
+  SAVE_VEHICLE,
 } from '../constants/action-types';
 
 export function getCategories() {
@@ -29,6 +30,10 @@ export function yearChosen(params) {
 
 export function getVehicle(params) {
   return { type: VEHICLE_REQUESTED, payload: { params } };
+}
+
+export function saveVehicle(vehicle) {
+  return { type: SAVE_VEHICLE, payload: { vehicle } };
 }
 
 export default '';

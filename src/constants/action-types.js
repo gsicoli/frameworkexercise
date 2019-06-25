@@ -9,5 +9,7 @@ export const YEARS_LOADED = 'YEARS_LOADED';
 export const YEARS_CHOSEN = 'YEARS_CHOSEN';
 export const VEHICLE_REQUESTED = 'VEHICLE_REQUESTED';
 export const VEHICLE_LOADED = 'VEHICLE_LOADED';
+export const SAVE_VEHICLE = 'SAVE_VEHICLE';
+export const VEHICLE_SAVED = 'VEHICLE_SAVED';
 export const API_ERROR = 'API_ERROR';
 export default '';

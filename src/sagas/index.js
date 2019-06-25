@@ -4,6 +4,7 @@ import brandsWatcherSaga from './brands';
 import modelsWatcherSaga from './models';
 import yearsWatcherSaga from './years';
 import vehicleWatcherSaga from './vehicle';
+import saveVehicleWatcherSaga from './saveVehicle';
 
 export default function* rootSaga() {
   yield all([
@@ -12,5 +13,6 @@ export default function* rootSaga() {
     modelsWatcherSaga(),
     yearsWatcherSaga(),
     vehicleWatcherSaga(),
+    saveVehicleWatcherSaga(),
   ]);
 }

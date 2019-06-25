@@ -13,7 +13,7 @@ export class FipeForm extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick(event) {
+  handleClick() {
     const params = {
       category: this.props.selectedCategory,
       id: this.props.selectedBrand,

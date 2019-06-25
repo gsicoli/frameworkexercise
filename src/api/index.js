@@ -27,4 +27,9 @@ export async function fetchVehicle(params) {
   return response.data;
 }
 
+export async function saveVehicle(params) {
+  const response = await axios.post('/db-access', params);
+  return response.status;
+}
+
 export default '';
