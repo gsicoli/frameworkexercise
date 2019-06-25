@@ -1,26 +1,26 @@
 const router = require('express').Router();
 const { models } = require('../src/models');
 
-const createVeiculo = async (req, res, next) => {
+const createVehicle = async (req, res, next) => {
   try {
-    const veiculo = new models.Veiculo(req.body);
-    await veiculo.save();
+    const vehicle = new models.Vehicle(req.body);
+    await vehicle.save();
     res.sendStatus(200);
   } catch (err) {
     next(err);
   }
 };
 
-const getAllVeiculos = async (req, res, next) => {
+const getAllVehicles = async (req, res, next) => {
   try {
-    const veiculos = await models.Veiculo.find();
-    res.send(veiculos);
+    const vehicles = await models.Vehicle.find();
+    res.send(vehicles);
   } catch (err) {
     next(err);
   }
 };
 
-router.post('/', createVeiculo);
-router.get('/', getAllVeiculos);
+router.post('/', createVehicle);
+router.get('/', getAllVehicles);
 
 module.exports = router;
