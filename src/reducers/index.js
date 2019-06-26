@@ -9,6 +9,7 @@ import {
   YEARS_LOADED,
   YEARS_CHOSEN,
   VEHICLE_LOADED,
+  SAVED_VEHICLES_LOADED,
 } from '../constants/action-types';
 
 const initialState = {
@@ -20,6 +21,7 @@ const initialState = {
   availableBrands: [],
   availableModels: [],
   availableYears: [],
+  vehiclesSaved: [],
   brandsDisabled: true,
   modelsDisabled: true,
   yearsDisabled: true,
@@ -100,6 +102,12 @@ const rootReducer = (state = initialState, action) => {
     return Object.assign({}, state, {
       vehicle: action.payload,
       displayCard: '',
+    });
+  }
+
+  if (action.type === SAVED_VEHICLES_LOADED) {
+    return Object.assign({}, state, {
+      vehiclesSaved: action.payload,
     });
   }
 

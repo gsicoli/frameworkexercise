@@ -32,4 +32,9 @@ export async function saveVehicle(params) {
   return response.status;
 }
 
+export async function fetchSavedVehicles() {
+  const response = await axios.get('/db-access');
+  return response.data;
+}
+
 export default '';

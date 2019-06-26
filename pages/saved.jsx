@@ -1,7 +1,8 @@
 import Layout from '../src/components/Layout';
+import SavedTable from '../src/components/SavedTable';
 
 export default () => (
   <Layout>
-    Aqui ficarão os resultados salvos na base de dados.
+    <SavedTable />
   </Layout>
 );
