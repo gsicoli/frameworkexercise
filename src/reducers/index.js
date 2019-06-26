@@ -27,7 +27,6 @@ const initialState = {
   yearsDisabled: true,
   buscarDisabled: true,
   vehicle: {},
-  displayCard: 'd-none',
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -101,7 +100,6 @@ const rootReducer = (state = initialState, action) => {
   if (action.type === VEHICLE_LOADED) {
     return Object.assign({}, state, {
       vehicle: action.payload,
-      displayCard: '',
     });
   }
 

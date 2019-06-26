@@ -1,9 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import classnames from 'classnames';
 import { saveVehicle } from '../actions';
 
-const vcClassesDefault = ['card', 'vehicleCard', 'offset-md-2', 'col-md-8'];
 export class VehicleCard extends Component {
   constructor(props) {
     super(props);
@@ -15,7 +13,11 @@ export class VehicleCard extends Component {
   }
 
   render() {
-    let vcClasses = classnames(vcClassesDefault, this.props.displayCard);
+    let vcClasses = 'card vehicleCard offset-md-2 col-md-8'
+    if (this.props.vehicle.name === undefined) {
+      vcClasses += ' d-none';
+    }
+
     return (
       <div className={vcClasses}>
         <div className="card-body">

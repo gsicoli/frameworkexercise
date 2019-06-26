@@ -5,15 +5,33 @@ import { getSavedVehicle } from '../actions';
 export class SavedTable extends Component {
   constructor(props) {
     super(props);
-    this.counter = 0;
   }
 
   componentDidMount() {
     this.props.getSavedVehicle();
-    this.counter = 0;
+  }
+
+  getTableRows(data) {
+    const rows = [];
+    let counter = 0;
+    data.forEach(el => {
+      rows.push(
+        <tr>
+          <th scope="row">{++counter}</th>
+          <td>{el.marca}</td>
+          <td>{el.name}</td>
+          <td>{el.ano_modelo}</td>
+          <td>{el.combustivel}</td>
+          <td>{el.preco}</td>
+        </tr>
+      );
+    });
+    return rows;
   }
 
   render() {
+    const rows = this.getTableRows(this.props.vehicles);
+
     return (
       <table className="table table-hover offset-md-2 col-md-8">
         <thead>
@@ -27,16 +45,7 @@ export class SavedTable extends Component {
           </tr>
         </thead>
         <tbody>
-          {this.props.vehicles.map(el => (
-            <tr>
-              <th scope="row">{++this.counter}</th>
-              <td>{el.marca}</td>
-              <td>{el.name}</td>
-              <td>{el.ano_modelo}</td>
-              <td>{el.combustivel}</td>
-              <td>{el.preco}</td>
-            </tr>
-          ))}
+          {rows}
         </tbody>
       </table>
     );
