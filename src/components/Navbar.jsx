@@ -4,7 +4,7 @@ const Navbar = () => (
   <div className='topnav'>
     <Link href="/"><a>Home</a></Link>
     <Link href="/search"><a>Nova Consulta</a></Link>
-    <Link href="/salvos"><a>Consultas Salvas</a></Link>
+    <Link href="/saved"><a>Consultas Salvas</a></Link>
   </div>
 );
 
