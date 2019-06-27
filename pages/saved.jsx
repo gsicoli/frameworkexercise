@@ -1,5 +1,5 @@
-import Layout from '../src/components/Layout';
-import SavedTable from '../src/components/SavedTable';
+import Layout from '../frontend/components/Layout';
+import SavedTable from '../frontend/components/SavedTable';
 
 export default () => (
   <Layout>

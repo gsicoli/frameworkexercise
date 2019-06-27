@@ -2,8 +2,8 @@ const express = require('express');
 const nextlib = require('next');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const { fipe, dbOps } = require('./routes');
-const { connectDb } = require('./src/models');
+const { fipe, dbOps, errorRoute } = require('./routes');
+const { connectDb } = require('./backend/models');
 
 require('custom-env').env();
 
@@ -31,12 +31,7 @@ const startServer = async () => {
   // Next will map everything under 'pages'.
   app.get('*', (req, res) => nextHandler(req, res));
 
-  app.use((err, req, res, next) => {
-    if (res.headersSent) {
-      next(err);
-    }
-    res.sendStatus(500);
-  });
+  app.use(errorRoute);
 
   app.listen(process.env.SERVER_PORT, () => {
     console.log('Server is running.');

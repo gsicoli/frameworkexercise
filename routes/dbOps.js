@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { models } = require('../src/models');
+const { models } = require('../backend/models');
 
 const createVehicle = async (req, res, next) => {
   try {
