@@ -5,9 +5,6 @@ import { getSavedVehicle } from '../actions';
 export class SavedTable extends Component {
   constructor(props) {
     super(props);
-  }
-
-  componentDidMount() {
     this.props.getSavedVehicle();
   }
 
